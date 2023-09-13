@@ -1,40 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { UserContext, ThemeContext } from '../../../contexts';
 import styles from './CardUser.module.scss';
 import { THEMES } from '../../../constants';
+import { withTheme, withUser } from '../../HOCs';
 
-const CardUser = () => {
-  const render = ([theme]) => {
-    const classes = cx(styles.container, {
-      [styles.light]: theme === THEMES.LIGHT,
-      [styles.dark]: theme === THEMES.DARK,
-    });
-    return (
-      <UserContext.Consumer>
-        {({
-          user: { id, firstName, lastName, isSelect, avatar },
-          selectorUser,
-        }) => {
-          const selectHandle = () => {
-            selectorUser(id);
-          };
-          const stylesSelect = { backgroundColor: isSelect ? 'pink' : 'grey' };
+const CardUser = (props) => {
+  const {
+    theme,
+    user: { id, firstName, lastName, isSelect, avatar },
+    selectorUser,
+  } = props;
 
-          return (
-            <article onClick={selectHandle} className={classes}>
-              <h3 style={stylesSelect}>
-                {firstName} {lastName}
-              </h3>
-              <img src={avatar} alt="" />
-            </article>
-          );
-        }}
-      </UserContext.Consumer>
-    );
+  const classes = cx(styles.container, {
+    [styles.light]: theme === THEMES.LIGHT,
+    [styles.dark]: theme === THEMES.DARK,
+  });
+  const selectHandle = () => {
+    selectorUser(id);
   };
-  return <ThemeContext.Consumer>{render}</ThemeContext.Consumer>;
+  const stylesSelect = { backgroundColor: isSelect ? 'pink' : 'grey' };
+
+  return (
+    <article onClick={selectHandle} className={classes}>
+      <h3 style={stylesSelect}>
+        {firstName} {lastName}
+      </h3>
+      <img src={avatar} alt="" />
+    </article>
+  );
 };
 
 export const userShape = PropTypes.shape({
@@ -60,4 +54,6 @@ CardUser.defaultProps = {
   selectorUser: () => {},
 };
 
-export default CardUser;
+export default withUser(withTheme(CardUser));
+
+// export default withTheme(withUser(CardUser));
