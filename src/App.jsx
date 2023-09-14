@@ -5,7 +5,8 @@ import { UserContext, ThemeContext } from './contexts';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import SignInForm from './components/SignInForm';
+import SignInForm from './components/forms/SignInForm';
+
 import Home from './pages/Home';
 import UsersPage from './pages/UsersPage';
 import Page404 from './pages/Page404';
@@ -13,9 +14,10 @@ import LoaderPage from './pages/LoaderPage';
 import UsersBlock from './pages/LoaderPage/UsersBlock';
 import EventsBlock from './pages/LoaderPage/EventsBlock';
 import ProductsBlock from './pages/LoaderPage/ProductsBlock';
+import FormsPage from './pages/FormsPage';
 
 import { THEMES } from './constants';
-import TestYUP from './pages/TestYUP';
+
 
 class App extends Component {
   constructor(props) {
@@ -54,7 +56,7 @@ class App extends Component {
             <main>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/test-yup" element={<TestYUP />} />
+                <Route path="/sign-up" element={<FormsPage />} />
                 <Route path="/sign-in" element={<SignInForm />} />
                 <Route path="/users" element={<UsersPage />} />
                 <Route path="/loader/" element={<LoaderPage />}>

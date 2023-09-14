@@ -14,7 +14,7 @@ export const SIGN_UP_USER_SCHEMA = Yup.object({
     .email()
     .min(7, 'Min length must 7')
     .max(64, 'Max length must 64'),
-  age: Yup.number().integer(),
+  age: Yup.number().integer().min(18),
   isMale: Yup.boolean().required(),
   password: Yup.string('Error type! value must be string')
     .trim()
