@@ -17,6 +17,7 @@ import ProductsBlock from './pages/LoaderPage/ProductsBlock';
 import FormsPage from './pages/FormsPage';
 
 import { THEMES } from './constants';
+import CallbackForm from './components/forms/CallbackForm';
 
 
 class App extends Component {
@@ -58,6 +59,7 @@ class App extends Component {
                 <Route path="/" element={<Home />} />
                 <Route path="/sign-up" element={<FormsPage />} />
                 <Route path="/sign-in" element={<SignInForm />} />
+                <Route path="/callback" element={<CallbackForm />} />
                 <Route path="/users" element={<UsersPage />} />
                 <Route path="/loader/" element={<LoaderPage />}>
                   <Route path="users" element={<UsersBlock />} />

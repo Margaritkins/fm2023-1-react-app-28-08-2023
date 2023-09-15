@@ -15,6 +15,9 @@ const NavMenu = () => {
           <NavLink to="/sign-in">sign-in</NavLink>
         </li>
         <li>
+          <NavLink to="/callback">callback</NavLink>
+        </li>
+        <li>
           <NavLink to="/users">users</NavLink>
         </li>
         <li>

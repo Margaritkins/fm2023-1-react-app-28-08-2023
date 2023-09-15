@@ -1,0 +1,25 @@
+.label {
+  display: block;
+  padding-bottom: 1.8rem;
+  position: relative;
+  > * {
+    display: block;
+    padding: 0.7rem;
+  }
+  > .error {
+    position: absolute;
+  }
+}
+
+.input{
+  border: 5px double blue;
+  outline: none;
+  background-color: rgba(30, 0, 255, 0.121);
+}
+.input:focus{
+  outline: 5px double red;
+}
+
+.invalid {
+  background-color: rgba(255, 0, 0, 0.276);
+}

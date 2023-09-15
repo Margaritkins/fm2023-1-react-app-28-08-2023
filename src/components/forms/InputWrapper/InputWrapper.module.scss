@@ -1,0 +1,21 @@
+.label {
+  display: block;
+  padding: 0.7rem;
+  position: relative;
+  > * {
+    display: block;
+  }
+  .label_name {
+    font-size: 1.3rem;
+  }
+  .input {
+    padding: 0.7rem;
+  }
+  .error {
+    padding: 0.7rem;
+    position: absolute;
+    z-index: 999;
+    background-color: red;
+    color: white;
+  }
+}
