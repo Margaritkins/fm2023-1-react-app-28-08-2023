@@ -18,7 +18,7 @@ import FormsPage from './pages/FormsPage';
 
 import { THEMES } from './constants';
 import CallbackForm from './components/forms/CallbackForm';
-
+import LearnHooks from './components/LearnHooks';
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class App extends Component {
         <UserContext.Provider value={{ user, selectorUser: this.selectorUser }}>
           <BrowserRouter>
             <Header />
+            <LearnHooks />
             <main>
               <Routes>
                 <Route path="/" element={<Home />} />
