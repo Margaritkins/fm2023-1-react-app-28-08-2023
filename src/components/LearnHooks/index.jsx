@@ -1,28 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const LearnHooks = (psops) => {
-  const [state, setState] = useState({ x: 0, y: 0, count: 0 });
+  const [coords, setCoords] = useState({ x: 0, y: 0, z: 0 });
+  const [countClick, setCountClick] = useState(0);
   const handleMove = (event) => {
-    // console.log(event.clientX, event.clientY);
-    // console.log(event.nativeEvent.offsetX);
-    setState({
-      ...state,
+    setCoords({
+      ...coords,
       x: event.clientX,
       y: event.clientY,
     });
   };
   const handleClick = () => {
-    setState((state) => ({ ...state, count: state.count + 1 }));
+    setCountClick((countClick) => countClick + 1);
   };
+  // console.log(document.body);
+  // console.log(window);
+  
+  useEffect(()=>{
+    console.log('add effect')
+    document.body.addEventListener('click', handleClick); //setInterval() alert() fetch()
+    return ()=>{
+      console.log('remove effect')
+      document.body.removeEventListener('click', handleClick); //clearInterval()
+    }
+  }, [])
+
+/*
+  useEffect(() => {
+    effect
+    return () => {
+      cleanup
+    };
+  }, [input]);
+*/
   return (
     <div
       style={{ border: '1px solid red' }}
       onMouseMove={handleMove}
-      onClick={handleClick}
+      // onClick={handleClick}
     >
       <h2>
-        coords: x = {state.x}, y = {state.y}
-        <br /> count = {state.count}
+        coords: x = {coords.x}, y = {coords.y}
+        <br /> count = {countClick}
       </h2>
     </div>
   );
