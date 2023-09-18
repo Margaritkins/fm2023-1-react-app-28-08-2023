@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
 
 const LearnHooks = (psops) => {
-  const [count, setCount] = useState(0);
-  const [step, setStep] = useState(1);
-  const [isAdd, setIsAdd] = useState(true);
-  console.log('render');
+  const [state, setState] = useState({ x: 0, y: 0, count: 0 });
+  const handleMove = (event) => {
+    // console.log(event.clientX, event.clientY);
+    // console.log(event.nativeEvent.offsetX);
+    setState({
+      ...state,
+      x: event.clientX,
+      y: event.clientY,
+    });
+  };
   const handleClick = () => {
-    setCount((count) => (isAdd ? count + step : count - step));
-  };
-  const handleSwitch = () => {
-    setIsAdd(!isAdd);
-  };
-  const handleChange = ({ target: { value } }) => {
-    setStep(Number(value));
+    setState((state) => ({ ...state, count: state.count + 1 }));
   };
   return (
-    <div>
-      <h2>LearnHooks</h2>
-      <h3>Count: {count}</h3>
-      <button onClick={handleClick}>{isAdd ? '+' : '-'}</button>
-      <button onClick={handleSwitch}>switch</button>
-      <label>
-        step: <input value={step} onChange={handleChange} />
-      </label>
+    <div
+      style={{ border: '1px solid red' }}
+      onMouseMove={handleMove}
+      onClick={handleClick}
+    >
+      <h2>
+        coords: x = {state.x}, y = {state.y}
+        <br /> count = {state.count}
+      </h2>
     </div>
   );
 };
