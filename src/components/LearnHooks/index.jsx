@@ -16,10 +16,10 @@ const LearnHooks = (props) => {
       setCountClick((countClick) => countClick + 1);
       //setCountClick(countClick + 1);
     };
-    console.log('add effect');
+    //console.log('add effect');
     document.body.addEventListener('click', handleClick); //setInterval() alert() fetch()
     return () => {
-      console.log('cleanup effect');
+      //console.log('cleanup effect');
       document.body.removeEventListener('click', handleClick); //clearInterval()
     };
   }, []);
