@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import cx from 'classnames';
 import NavMenu from '../NavMenu';
 import Avatar from '../Avatar';
 import SwitchTheme from '../SwitchTheme';
 import styles from './Header.module.scss';
 import { THEMES } from '../../constants';
-import { withTheme } from '../HOCs';
+import { ThemeContext } from '../../contexts';
 
 const Header = (props) => {
-  const { theme } = props;
+  const  [theme]  = useContext(ThemeContext);
   const classes = cx(styles.container, {
     [styles.light]: theme === THEMES.LIGHT,
     [styles.dark]: theme === THEMES.DARK,
@@ -22,7 +22,4 @@ const Header = (props) => {
   );
 };
 
-// defaultProps
-// propTypes
-
-export default withTheme(Header);
+export default Header;

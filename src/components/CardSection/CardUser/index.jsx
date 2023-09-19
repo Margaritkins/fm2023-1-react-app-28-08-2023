@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './CardUser.module.scss';
 import { THEMES } from '../../../constants';
-import { withTheme, withUser } from '../../HOCs';
+import { ThemeContext, UserContext } from '../../../contexts';
 
 const CardUser = (props) => {
+  const [theme] = useContext(ThemeContext);
   const {
-    theme,
     user: { id, firstName, lastName, isSelect, avatar },
     selectorUser,
-  } = props;
+  } = useContext(UserContext);
 
   const classes = cx(styles.container, {
     [styles.light]: theme === THEMES.LIGHT,
@@ -54,6 +54,4 @@ CardUser.defaultProps = {
   selectorUser: () => {},
 };
 
-export default withUser(withTheme(CardUser));
-
-// export default withTheme(withUser(CardUser));
+export default CardUser;

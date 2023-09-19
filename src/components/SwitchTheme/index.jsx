@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { LightMode, DarkMode } from '@mui/icons-material';
+import { ThemeContext } from '../../contexts';
 import { THEMES } from '../../constants';
-import { withTheme } from '../HOCs';
 
 const SwitchTheme = (props) => {
-  const { theme, changeTheme } = props;
+  const [theme, changeTheme] = useContext(ThemeContext);
+
   return (
     <div onClick={changeTheme}>
       {theme === THEMES.LIGHT ? <DarkMode /> : <LightMode />}
@@ -12,4 +13,4 @@ const SwitchTheme = (props) => {
   );
 };
 
-export default withTheme(SwitchTheme);
+export default SwitchTheme;
