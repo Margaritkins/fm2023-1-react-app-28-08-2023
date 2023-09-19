@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const LearnHooks = (psops) => {
+const LearnHooks = (props) => {
   const [coords, setCoords] = useState({ x: 0, y: 0, z: 0 });
   const [countClick, setCountClick] = useState(0);
   const handleMove = (event) => {
@@ -10,22 +10,21 @@ const LearnHooks = (psops) => {
       y: event.clientY,
     });
   };
-  const handleClick = () => {
-    setCountClick((countClick) => countClick + 1);
-  };
-  // console.log(document.body);
-  // console.log(window);
-  
-  useEffect(()=>{
-    console.log('add effect')
-    document.body.addEventListener('click', handleClick); //setInterval() alert() fetch()
-    return ()=>{
-      console.log('remove effect')
-      document.body.removeEventListener('click', handleClick); //clearInterval()
-    }
-  }, [])
 
-/*
+  useEffect(() => {
+    const handleClick = () => {
+      setCountClick((countClick) => countClick + 1);
+      //setCountClick(countClick + 1);
+    };
+    console.log('add effect');
+    document.body.addEventListener('click', handleClick); //setInterval() alert() fetch()
+    return () => {
+      console.log('cleanup effect');
+      document.body.removeEventListener('click', handleClick); //clearInterval()
+    };
+  }, []);
+
+  /*
   useEffect(() => {
     effect
     return () => {
@@ -33,11 +32,12 @@ const LearnHooks = (psops) => {
     };
   }, [input]);
 */
+
   return (
     <div
       style={{ border: '1px solid red' }}
       onMouseMove={handleMove}
-      // onClick={handleClick}
+      //onClick={handleClick}
     >
       <h2>
         coords: x = {coords.x}, y = {coords.y}
