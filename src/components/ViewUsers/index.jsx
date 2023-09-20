@@ -1,11 +1,11 @@
 import React from 'react';
 import Error from '../Error';
 import Spinner from '../Spinner';
+import { getUsersJSON } from '../../api';
+import { useLoaderData } from '../../hooks';
 
 const ViewUsers = (props) => {
-  const {
-    state: { data, isFetching, error },
-  } = props;
+  const { data, isFetching, error } = useLoaderData(getUsersJSON);
   if (error) {
     return <Error />;
   }

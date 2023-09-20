@@ -1,11 +1,11 @@
 import React from 'react';
 import Error from '../Error';
 import Spinner from '../Spinner';
+import { getEventsJSON } from '../../api';
+import { useLoaderData } from '../../hooks';
 
 const ViewEvents = (props) => {
-  const {
-    state: { data, isFetching, error },
-  } = props;
+  const { data, isFetching, error } = useLoaderData(getEventsJSON);
   if (error) {
     return <Error />;
   }
