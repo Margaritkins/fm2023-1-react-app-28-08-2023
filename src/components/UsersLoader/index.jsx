@@ -1,82 +1,65 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getUsers } from '../../api';
 import Error from '../Error';
 import Spinner from '../Spinner';
 // import styles from './UsersLoader.module.scss';
 
-class UsersLoader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-      error: null,
-      isFetching: false,
-      currentPage: 1,
-      currentResults: 5,
-    };
-  }
+const UsersLoader = (props) => {
+  const [users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
+  const [isFetching, setIsFetching] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentResults, setCurrentResults] = useState(5);
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((currentPage) => currentPage - 1);
+    }
+  };
+  const nextPage = () => {
+    setCurrentPage((currentPage) => currentPage + 1);
+  };
 
-  load = () => {
-    const { currentPage, currentResults } = this.state;
-    this.setState({ isFetching: true });
+  const load = () => {
+    setIsFetching(true);
     getUsers({ page: currentPage, results: currentResults })
       .then((data) => {
-        // console.log(data);
         if (data.error) {
           throw new Error();
         }
-        this.setState({ users: data.results });
+        setUsers(data.results);
       })
       .catch((err) => {
-        // console.dir(err);
-        this.setState({ error: err });
+        setError(err);
       })
       .finally(() => {
-        this.setState({ isFetching: false });
+        setIsFetching(false);
       });
   };
 
-  componentDidMount() {
-    this.load();
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.currentPage !== prevState.currentPage) {
-      this.load();
-    }
-  }
+  useEffect(() => {
+    load(); // eslint-disable-next-line
+  }, [currentPage, currentResults]);
 
-  prevPage = () => {
-    if (this.state.currentPage > 1) {
-      this.setState((state, props) => ({ currentPage: state.currentPage - 1 }));
-    }
-  };
-
-  nextPage = () =>
-    this.setState((state, props) => ({ currentPage: state.currentPage + 1 }));
-
-  render() {
-    const { isFetching, error, users, currentPage } = this.state;
-    if (error) {
-      return <Error />;
-    }
-    return (
-      <section>
-        <h2>'Users': 'Користувачі'</h2>
-        <div>
-          <button onClick={this.prevPage} disabled={currentPage === 1}>
-            &lt; prev
-          </button>
-          <span>&nbsp;{currentPage}&nbsp;</span>
-          <button onClick={this.nextPage}>next &gt;</button>
-        </div>
-        <ul>
-          {isFetching && <Spinner />}
-          {isFetching ||
-            users.map((user) => <li key={user.login.uuid}>{user.email}</li>)}
-        </ul>
-      </section>
-    );
+  if (error) {
+    return <Error />;
   }
-}
+  return (
+    <section>
+      <h2>'Users': 'Користувачі' {currentResults}</h2>
+      <div>
+        <button onClick={prevPage} disabled={currentPage === 1}>
+          &lt; prev
+        </button>
+        <span>&nbsp;{currentPage}&nbsp;</span>
+        <button onClick={nextPage}>next &gt;</button>
+      </div>
+      <ul>
+        {isFetching && <Spinner />}
+        {isFetching ||
+          users.map((user) => <li key={user.login.uuid}>{user.email}</li>)}
+      </ul>
+    </section>
+  );
+};
 
 export default UsersLoader;
