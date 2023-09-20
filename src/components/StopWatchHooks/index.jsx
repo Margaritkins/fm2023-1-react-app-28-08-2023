@@ -13,15 +13,15 @@ const StopWatchHooks = () => {
     setIsRunning(false);
   };
   useEffect(() => {
-    console.log('isRunning = ', isRunning);
+    //console.log('isRunning = ', isRunning);
     if (isRunning) {
-      console.log('add set interval');
+      //console.log('add set interval');
       const idInterval = setInterval(() => {
         setTime((prevTime) => addSeconds(prevTime, 1));
       }, 1000);
 
       return () => {
-        console.log('clear set interval');
+        //console.log('clear set interval');
         clearInterval(idInterval);
       };
     }
