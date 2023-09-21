@@ -16,30 +16,22 @@ import EventsBlock from './pages/LoaderPage/EventsBlock';
 import ProductsBlock from './pages/LoaderPage/ProductsBlock';
 import FormsPage from './pages/FormsPage';
 
-import { THEMES } from './constants';
 import CallbackForm from './components/forms/CallbackForm';
+import { useAuthUser, useTheme, useClicker } from './hooks';
 
 const App = (props) => {
-  const [user, setUser] = useState({
+  const { user, selectorUser } = useAuthUser({
     id: 1,
     firstName: 'Brad',
     lastName: 'Pitt',
     isSelect: false,
     avatar: 'https://cdn-icons-png.flaticon.com/128/3641/3641963.png',
   });
-  const [theme, setTheme] = useState(THEMES.LIGHT);
-
-  const changeTheme = () => {
-    setTheme(theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT);
-  };
-
-  const selectorUser = (id) => {
-    setUser({ ...user, isSelect: !user.isSelect });
-  };
 
   return (
-    <ThemeContext.Provider value={[theme, changeTheme]}>
-      <UserContext.Provider value={{ user, selectorUser: selectorUser }}>
+    <ThemeContext.Provider value={useTheme()}>
+      <UserContext.Provider value={{ user, selectorUser }}>
+        <p>{useClicker()}</p>
         <BrowserRouter>
           <Header />
           <main>
