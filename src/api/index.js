@@ -29,3 +29,5 @@ export const getUsersJSON = () => myFetch('/data/users.json');
 export const getEventsJSON = () => myFetch('/data/events.json');
 
 export const getProductsJSON = () => myFetch('/data/products.json');
+
+export const getChatJSON = () => myFetch('/data/chat.json');

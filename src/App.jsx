@@ -16,9 +16,11 @@ import EventsBlock from './pages/LoaderPage/EventsBlock';
 import ProductsBlock from './pages/LoaderPage/ProductsBlock';
 import FormsPage from './pages/FormsPage';
 
-import CallbackForm from './components/forms/CallbackForm';
 import { useAuthUser, useTheme, useClicker } from './hooks';
+
+import CallbackForm from './components/forms/CallbackForm';
 import AnketForm from './components/forms/AnketForm';
+import Chat from './components/Chat';
 
 const App = (props) => {
   const { user, selectorUser } = useAuthUser({
@@ -38,6 +40,7 @@ const App = (props) => {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/chat" element={<Chat />} />
               <Route path="/sign-up" element={<FormsPage />} />
               <Route path="/sign-in" element={<SignInForm />} />
               <Route path="/callback" element={<CallbackForm />} />

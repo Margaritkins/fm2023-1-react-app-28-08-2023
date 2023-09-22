@@ -9,6 +9,9 @@ const NavMenu = () => {
           <NavLink to="/">home</NavLink>
         </li>
         <li>
+          <NavLink to="/chat">chat</NavLink>
+        </li>
+        <li>
           <NavLink to="/anketa">anketa</NavLink>
         </li>
         <li>

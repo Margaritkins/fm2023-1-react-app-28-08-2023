@@ -1,0 +1,48 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "body": "text 1",
+      "authorId": 1
+    },
+    {
+      "id": 3,
+      "body": "hi",
+      "authorId": 2
+    },
+    {
+      "id": 10,
+      "body": "bye",
+      "authorId": 2
+    },
+    {
+      "id": 7,
+      "body": "text 2",
+      "authorId": 3
+    },
+    {
+      "id": 23,
+      "body": "hi",
+      "authorId": 1
+    },
+    {
+      "id": 20,
+      "body": "bye",
+      "authorId": 3
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "brad"
+    },
+    {
+      "id": 2,
+      "name": "tom"
+    },
+    {
+      "id": 3,
+      "name": "alex"
+    }
+  ]
+}
