@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { UserContext, ThemeContext } from './contexts';
@@ -18,6 +18,7 @@ import FormsPage from './pages/FormsPage';
 
 import CallbackForm from './components/forms/CallbackForm';
 import { useAuthUser, useTheme, useClicker } from './hooks';
+import AnketForm from './components/forms/AnketForm';
 
 const App = (props) => {
   const { user, selectorUser } = useAuthUser({
@@ -40,6 +41,7 @@ const App = (props) => {
               <Route path="/sign-up" element={<FormsPage />} />
               <Route path="/sign-in" element={<SignInForm />} />
               <Route path="/callback" element={<CallbackForm />} />
+              <Route path="/anketa" element={<AnketForm />} />
               <Route path="/users" element={<UsersPage />} />
               <Route path="/loader/" element={<LoaderPage />}>
                 <Route path="users" element={<UsersBlock />} />
