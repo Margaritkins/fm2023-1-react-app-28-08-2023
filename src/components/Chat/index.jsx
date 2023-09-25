@@ -39,7 +39,7 @@ const Chat = () => {
       {state.messages.map((msg) => (
         <article key={msg.id}>
           <h3>{msg.body}</h3>
-          <p>{msg.author.name}</p>
+          <p>{msg?.author.name}</p>
         </article>
       ))}
     </section>

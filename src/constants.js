@@ -34,3 +34,8 @@ export const THEMES = {
   LIGHT: 'LIGHT',
   DARK: 'DARK',
 };
+
+export const STATUS_MENU = {
+  OPEN: 'OPEN',
+  CLOSE: 'CLOSE'
+}

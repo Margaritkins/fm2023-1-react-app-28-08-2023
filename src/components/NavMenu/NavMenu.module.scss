@@ -1,0 +1,41 @@
+@use '/src/common/styles/colors' as *;
+$width: 300px;
+
+.navmenu {
+  width: $width;
+  position: fixed;
+  left: -$width;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: $colorBg;
+  color: white;
+  transition: left 0.5s;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    padding-top: 40px;
+    a {
+      display: block;
+      padding: 1rem;
+      font-size: 1.7rem;
+      text-transform: capitalize;
+      &:hover {
+        background-color: $colorMain;
+        color: $colorBg;
+      }
+    }
+  }
+}
+
+.close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.open{
+  left:0;
+}
