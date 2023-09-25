@@ -37,8 +37,13 @@ const App = (props) => {
 
   const [state, dispatch] = useReducer(appReducer, { isMenuOpen: false });
   const handleOpenMenu = (event) => {
-    event.stopPropagation();//
+    event.stopPropagation(); //
     return dispatch({ type: STATUS_MENU.OPEN });
+  };
+  const handleEnter = (event) => {
+    if (event.key === 'Enter') {
+      return dispatch({ type: STATUS_MENU.OPEN });
+    }
   };
   const handleCloseMenu = () => dispatch({ type: STATUS_MENU.CLOSE });
 
@@ -46,7 +51,13 @@ const App = (props) => {
     <ThemeContext.Provider value={useTheme()}>
       <UserContext.Provider value={{ user, selectorUser }}>
         <MenuContext.Provider value={{ state, handleCloseMenu }}>
-          <MenuOpenIcon fontSize="large" onClick={handleOpenMenu} />
+          <MenuOpenIcon
+            fontSize="large"
+            onClick={handleOpenMenu}
+            onKeyDown={handleEnter}
+            tabIndex="0"
+            aria-label="Open menu"
+          />
           <p>{useClicker()}</p>
           <BrowserRouter>
             <Header />

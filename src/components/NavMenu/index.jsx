@@ -14,10 +14,18 @@ const NavMenu = () => {
   const navClassNames = cx(styles.navmenu, {
     [styles.open]: isMenuOpen,
   });
+  const handleEnter = (event) => {
+    if (event.key === 'Enter') {
+      handleCloseMenu();
+    }
+  };
   const idNav = useId();
   useEffect(() => {
     const handleClick = ({ target }) => {
-      if (isMenuOpen && document.getElementById(idNav).contains(target) === false) {
+      if (
+        isMenuOpen &&
+        document.getElementById(idNav).contains(target) === false
+      ) {
         handleCloseMenu();
       }
     };
@@ -26,12 +34,15 @@ const NavMenu = () => {
       window.removeEventListener('click', handleClick);
     }; //eslint-disable-next-line
   }, [isMenuOpen]);
+  
   return (
     <nav className={navClassNames} id={idNav}>
       <CancelPresentationIcon
         fontSize="large"
         className={styles.close}
         onClick={handleCloseMenu}
+        onKeyDown={handleEnter}
+        tabIndex="0"
       />
       <ul>
         <li>
