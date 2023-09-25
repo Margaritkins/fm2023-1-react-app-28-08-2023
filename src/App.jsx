@@ -37,7 +37,7 @@ const App = (props) => {
 
   const [state, dispatch] = useReducer(appReducer, { isMenuOpen: false });
   const handleOpenMenu = (event) => {
-    event.stopPropagation();
+    event.stopPropagation();//
     return dispatch({ type: STATUS_MENU.OPEN });
   };
   const handleCloseMenu = () => dispatch({ type: STATUS_MENU.CLOSE });
