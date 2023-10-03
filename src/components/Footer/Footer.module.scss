@@ -1,0 +1,19 @@
+@use '/src/common/styles/templates' as *;
+
+.container{
+  display: flex;
+  justify-content: space-between;
+  
+  h3{
+    padding: 20px
+  }
+}
+
+.light{
+  @extend %light;
+
+}
+
+.dark{
+  @extend %dark
+}
