@@ -20,6 +20,7 @@ class App extends Component {
         firstName: 'Brad',
         lastName: 'Pitt',
         isSelect: false,
+        avatar:"https://i.pinimg.com/originals/af/0a/62/af0a621b0d7edbc5ab835144dc0fa4df.gif"
       },
     };
   }
