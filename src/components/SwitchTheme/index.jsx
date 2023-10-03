@@ -1,17 +1,15 @@
 import React from "react";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { UserContext, ThemeContext } from "../../contexts";
 
 const SwitchTheme = (props) => {
-// const renderFunc=({user:{theme}, callback})=>{
 
-//   return <button onClick={callback}>switch theme</button>;
-// }
 return(
 
 
   <ThemeContext.Consumer>
     {([theme, callback])=>{
-      return <button onClick={callback}>switch theme</button>;
+      return <div onClick={callback}>{<Brightness4Icon/>}</div>;
     }}
     {/* {renderFunc} */}
     </ThemeContext.Consumer>
