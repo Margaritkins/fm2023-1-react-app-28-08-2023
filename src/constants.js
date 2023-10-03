@@ -29,3 +29,8 @@ export const API = {
   KEY: 'fm20231',
   NAT: 'gb',
 };
+
+export const THEMES={
+  LIGHT:'LIGHT',
+  DARK:'DARK'
+}

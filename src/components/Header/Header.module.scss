@@ -1,0 +1,15 @@
+@use '/src/common/styles/templates' as *;
+
+.container{
+  display: flex;
+  justify-content: space-between
+}
+
+.light{
+  @extend %light;
+
+}
+
+.dark{
+  @extend %dark
+}

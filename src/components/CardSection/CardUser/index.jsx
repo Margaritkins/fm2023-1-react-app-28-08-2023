@@ -1,26 +1,40 @@
 import React from 'react';
+import cx from 'classnames'
 import PropTypes from 'prop-types';
-import { UserContext } from '../../../contexts';
+import { UserContext, ThemeContext } from '../../../contexts';
+import styles from './CardUser.module.scss'
+import { THEMES } from '../../../constants';
 
 const CardUser = () => {
-  const renderFunc = ({
-    user: { id, firstName, lastName, isSelect },
-    selectorUser,
-  }) => {
-    const selectHandle = () => {
-      selectorUser(id);
-    };
-    const styles = { backgroundColor: isSelect ? 'pink' : 'grey' };
-    return (
-      <article onClick={selectHandle} style={styles}>
-        <h3>
-          {firstName} {lastName}
-        </h3>
-      </article>
-    );
-  };
 
-  return <UserContext.Consumer>{renderFunc}</UserContext.Consumer>;
+  const render=([theme])=>{
+    const classes=cx(styles.container, {
+      [styles.light]:theme===THEMES.LIGHT,
+      [styles.dark]:theme===THEMES.DARK
+    })
+    return <UserContext.Consumer>{({
+      user: { id, firstName, lastName, isSelect, avatar},
+      selectorUser,
+    }) => {
+      const selectHandle = () => {
+        selectorUser(id);
+      };
+      const stylesSelect = { backgroundColor: isSelect ? 'pink' : 'gray' };
+      
+      const imgStyles = { with: "70px", height: "70px", borderRadius: "50%" };
+      return (
+        <article onClick={selectHandle} className={classes} >
+          <h3 style={stylesSelect}>
+            {firstName} {lastName}
+          </h3>
+          <img src={avatar} alt="avatar" style={imgStyles}/>
+        </article>
+      );
+    }}</UserContext.Consumer>
+  }
+
+  
+  return<ThemeContext.Consumer>{render}</ThemeContext.Consumer>
 };
 
 export const userShape = PropTypes.shape({
